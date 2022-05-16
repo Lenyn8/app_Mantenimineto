@@ -6,9 +6,9 @@ import com.leninzumba.asistentemant.model.Tecnicos
 
 import com.leninzumba.asistentemant.repository.TecnicosRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
-
-
+import org.springframework.web.server.ResponseStatusException
 
 
 @Service
@@ -21,7 +21,17 @@ class TecnicosService {
     }
 
     fun save (tecnicos: Tecnicos): Tecnicos{
-        return tecnicosRepository.save(tecnicos)
+        try {
+            tecnicos.nombre?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("Campo TECNICOS no debe ser vacio")
+
+            return tecnicosRepository.save(tecnicos)
+        }
+
+        catch (ex : Exception){
+            throw ResponseStatusException(
+                HttpStatus.NOT_FOUND, ex.message, ex)
+        }
 
 
     }
@@ -33,11 +43,21 @@ class TecnicosService {
     }
 
     fun updateName (tecnicos: Tecnicos): Tecnicos {
-        val response=  tecnicosRepository.findById(tecnicos.id) ?: throw  Exception()
-        response.apply {
-            nombre = tecnicos.nombre
+        try {
+
+
+            val response = tecnicosRepository.findById(tecnicos.id)
+                ?: throw Exception("El id ${tecnicos.id} en TECNICOS no existe")
+            response.apply {
+                this.nombre = tecnicos.nombre
+            }
+            return tecnicosRepository.save(tecnicos)
         }
-        return tecnicosRepository.save(response)
+        catch (ex: Exception) {
+            throw ResponseStatusException(
+                HttpStatus.NOT_FOUND, ex.message, ex)
+        }
+
 
     }
 
