@@ -11,7 +11,6 @@ import javax.persistence.Table
 
 @Entity
 @Table (name= "maquinaria")
-
 class Maquinaria {
 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -20,8 +19,6 @@ class Maquinaria {
     var id: Long ? = null
     var nombre: String? = null
     var modelo: String? = null
-    @Column(name= "maquinaria_Id")
-    var maquinariaId : Long? = null
 
 
 

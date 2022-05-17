@@ -2,7 +2,7 @@
 package com.leninzumba.asistentemant.service
 
 import com.leninzumba.asistentemant.model.Maquinaria
-import com.leninzumba.asistentemant.repository.AreasRepository
+
 import com.leninzumba.asistentemant.repository.MaquinariaRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -14,13 +14,6 @@ import org.springframework.web.server.ResponseStatusException
 class MaquinariaService {
     @Autowired
     lateinit var maquinariaRepository: MaquinariaRepository
-
-    @Autowired
-    lateinit var areasRepository: AreasRepository
-
-
-
-
     fun list (): List <Maquinaria>{
         return maquinariaRepository.findAll()
 
@@ -31,7 +24,7 @@ class MaquinariaService {
             maquinaria.nombre?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("Campo MAQUINARIA no debe ser vacio")
 
-            areasRepository.findById(areasId)
+
 
             return maquinariaRepository.save(maquinaria)
         }

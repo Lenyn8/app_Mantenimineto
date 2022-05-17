@@ -4,6 +4,7 @@ package com.leninzumba.asistentemant.service
 import com.leninzumba.asistentemant.model.Areas
 
 import com.leninzumba.asistentemant.repository.AreasRepository
+import com.leninzumba.asistentemant.repository.MaquinariaRepository
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -15,6 +16,10 @@ import org.springframework.web.server.ResponseStatusException
 class AreasService {
     @Autowired
     lateinit var areasRepository: AreasRepository
+
+    @Autowired
+    lateinit var maquinariaRepository: MaquinariaRepository
+
     fun list(): List<Areas> {
         return areasRepository.findAll()
 
@@ -24,6 +29,10 @@ class AreasService {
         try {
             areas.name?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("Campo AREAS no debe ser vacio")
+
+            maquinariaRepository.findById(areas.maquinariaId)
+                ?: throw Exception("Campo AREAS no debe ser vacio")
+
 
             return areasRepository.save(areas)
         } catch (ex: Exception) {
