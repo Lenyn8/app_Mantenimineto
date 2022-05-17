@@ -1,0 +1,5 @@
+ALTER TABLE maquinaria
+   ADD COLUMN maquinaria_id INT NOT NULL;
+
+ALTER TABLE maquinaria
+   ADD FOREIGN KEY maquinaria_id) REFERENCES maquinaria (id)

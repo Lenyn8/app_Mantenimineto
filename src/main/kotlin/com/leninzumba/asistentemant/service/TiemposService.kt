@@ -23,7 +23,7 @@ class TiemposService {
 
     fun save (tiempos:Tiempos): Tiempos{
         try {
-            tiempos.contador?.takeIf { it.trim ().isNotEmpty() }
+            tiempos.contador?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("Campo TIMEPOS no debe ser vacio")
 
             return tiemposRepository.save(tiempos)

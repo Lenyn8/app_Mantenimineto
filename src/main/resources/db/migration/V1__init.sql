@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS maquinaria(
   id SERIAL,
   nombre VARCHAR (100) NOT NULL,
   modelo INT NOT NULL,
+  areas_id INT NOT NULL
   PRIMARY KEY (id)
   );
 
@@ -24,3 +25,4 @@ CREATE TABLE IF NOT EXISTS maquinaria(
   contador  INT  NOT NULL,
   PRIMARY KEY (id)
   );
+

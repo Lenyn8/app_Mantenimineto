@@ -20,6 +20,9 @@ class Maquinaria {
     var id: Long ? = null
     var nombre: String? = null
     var modelo: String? = null
+    @Column(name= "maquinaria_Id")
+    var maquinariaId : Long? = null
+
 
 
 

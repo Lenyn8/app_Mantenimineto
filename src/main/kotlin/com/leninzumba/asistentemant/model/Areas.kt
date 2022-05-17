@@ -20,6 +20,8 @@ class Areas {
     var id: Long? = null
     var name: String? = null
     var direccion: String? = null
+    @Column(name= "maquinaria_Id")
+    var maquinariaId : Long? = null
 
 
 
