@@ -2,8 +2,10 @@
 package com.leninzumba.asistentemant.service
 
 import com.leninzumba.asistentemant.model.Maquinaria
+import com.leninzumba.asistentemant.repository.AreasRepository
 
 import com.leninzumba.asistentemant.repository.MaquinariaRepository
+import com.leninzumba.asistentemant.repository.TecnicosRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
@@ -14,6 +16,11 @@ import org.springframework.web.server.ResponseStatusException
 class MaquinariaService {
     @Autowired
     lateinit var maquinariaRepository: MaquinariaRepository
+
+    @Autowired
+    lateinit var areasRepository: AreasRepository
+    @Autowired
+    lateinit var tecnicosRepository: TecnicosRepository
     fun list (): List <Maquinaria>{
         return maquinariaRepository.findAll()
 
@@ -24,7 +31,10 @@ class MaquinariaService {
             maquinaria.nombre?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("Campo MAQUINARIA no debe ser vacio")
 
-
+            areasRepository.findById(maquinaria.areasId)
+                ?: throw Exception("Campo MAQUINARIA no debe ser vacio")
+            tecnicosRepository.findById(maquinaria.tecnicosId)
+                ?: throw Exception("Campo MAQUINARIA no debe ser vacio")
 
             return maquinariaRepository.save(maquinaria)
         }

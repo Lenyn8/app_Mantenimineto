@@ -18,7 +18,14 @@ class Maquinaria {
     @Column (updatable = false)
     var id: Long ? = null
     var nombre: String? = null
-    var modelo: String? = null
+    var modelo: Long? = null
+
+
+    @Column(name= "areas_id")
+    var areasId : Long? = null
+    @Column(name= "tecnicos_id")
+    var tecnicosId : Long? = null
+
 
 
 

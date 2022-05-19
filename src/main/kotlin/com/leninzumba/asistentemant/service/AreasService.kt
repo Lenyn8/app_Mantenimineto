@@ -30,8 +30,6 @@ class AreasService {
             areas.name?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("Campo AREAS no debe ser vacio")
 
-            maquinariaRepository.findById(areas.maquinariaId)
-                ?: throw Exception("Campo AREAS no debe ser vacio")
 
 
             return areasRepository.save(areas)

@@ -1,8 +1,10 @@
 package com.leninzumba.asistentemant.service
 
 
+import com.leninzumba.asistentemant.model.Maquinaria
 import com.leninzumba.asistentemant.model.Tecnicos
 import com.leninzumba.asistentemant.model.Tiempos
+import com.leninzumba.asistentemant.repository.MaquinariaRepository
 
 
 import com.leninzumba.asistentemant.repository.TiemposRepository
@@ -16,6 +18,10 @@ import org.springframework.web.server.ResponseStatusException
 class TiemposService {
     @Autowired
     lateinit var tiemposRepository: TiemposRepository
+    @Autowired
+    lateinit var maquinariaRepository: MaquinariaRepository
+
+ 
     fun list (): List <Tiempos>{
         return tiemposRepository.findAll()
 
@@ -25,6 +31,10 @@ class TiemposService {
         try {
             tiempos.contador?.takeIf { it >=0 }
                 ?: throw Exception("Campo TIMEPOS no debe ser vacio")
+
+            maquinariaRepository.findById(tiempos.maquinariaId)
+                ?: throw Exception("Campo AREAS no debe ser vacio")
+
 
             return tiemposRepository.save(tiempos)
         }

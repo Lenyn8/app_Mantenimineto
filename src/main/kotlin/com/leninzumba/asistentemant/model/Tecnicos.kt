@@ -21,7 +21,4 @@ class Tecnicos {
     var nombre: String? = null
     var cedula: Long? = null
 
-
-
-
 }

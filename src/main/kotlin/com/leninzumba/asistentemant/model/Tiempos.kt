@@ -20,6 +20,9 @@ class Tiempos {
     var id: Long ? = null
     var contador: Long? = null
 
+    @Column(name= "maquinaria_id")
+    var maquinariaId : Long? = null
+
 
 
 
