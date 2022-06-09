@@ -1,7 +1,9 @@
 
 package com.leninzumba.asistentemant.service
 
+import com.leninzumba.asistentemant.dto.ChangeNombre
 import com.leninzumba.asistentemant.model.Maquinaria
+import com.leninzumba.asistentemant.model.Tiempos
 import com.leninzumba.asistentemant.repository.AreasRepository
 
 import com.leninzumba.asistentemant.repository.MaquinariaRepository
@@ -26,6 +28,8 @@ class MaquinariaService {
 
     }
 
+
+
     fun save(maquinaria: Maquinaria):Maquinaria{
         try {
             maquinaria.nombre?.takeIf { it.trim().isNotEmpty() }
@@ -49,6 +53,12 @@ class MaquinariaService {
 
     }
 
+    fun updateOtherNombre (changeNombre: ChangeNombre): String?{
+     val rowsUpdate=maquinariaRepository.setOtherNombre(changeNombre.nombre, changeNombre.nuevoNombre)
+
+        return "${rowsUpdate} rows updated"
+    }
+
     fun update (maquinaria: Maquinaria):Maquinaria {
         maquinariaRepository.findById(maquinaria.id) ?: throw  Exception()
 
@@ -63,6 +73,14 @@ class MaquinariaService {
     fun getById (id: Long?):Maquinaria?{
         return maquinariaRepository.findById(id)
     }
+     //parametro de consulta
+    fun getByModelo (modelo: Long): List<Maquinaria>? {
+        return maquinariaRepository.getlistModelo(modelo)
+    }
+    fun getByNombre (nombre: String): List<Maquinaria>? {
+        return maquinariaRepository. getlistNombre(nombre)
+    }
+
 
     fun updateName (maquinaria: Maquinaria):Maquinaria {
         try {

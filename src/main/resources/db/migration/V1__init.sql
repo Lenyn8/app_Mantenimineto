@@ -1,10 +1,10 @@
+
  CREATE TABLE IF NOT EXISTS tecnicos(
    id SERIAL,
    nombre VARCHAR (100) NOT NULL,
-   cedula INT NOT NULL,
+   cedula VARCHAR (100) NOT NULL,
    PRIMARY KEY (id)
    );
-
 
 
  CREATE TABLE IF NOT EXISTS areas(
@@ -32,9 +32,6 @@ CREATE TABLE IF NOT EXISTS maquinaria(
   );
 
 
-
-
-
   CREATE TABLE IF NOT EXISTS tiempos(
   id SERIAL,
   contador  INT  NOT NULL,
@@ -43,4 +40,14 @@ CREATE TABLE IF NOT EXISTS maquinaria(
   PRIMARY KEY (id),
   FOREIGN KEY (maquinaria_id) REFERENCES maquinaria (id)
   );
+
+  CREATE TABLE IF NOT EXISTS canchitas(
+   id  SERIAL,
+   nombre VARCHAR (100) NOT NULL,
+   hora INT (100) NOT NULL,
+   cancha VARCHAR (100) NOT NULL,
+
+   PRIMARY KEY (id)
+   );
+
 
