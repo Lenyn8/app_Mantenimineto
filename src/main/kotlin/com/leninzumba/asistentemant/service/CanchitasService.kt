@@ -38,11 +38,28 @@ class CanchitasService{
         return canchitasRepository.getlistNombre(nombre)
     }
 
-    fun getByHora (hora: Int?):List<Canchitas>?{
+    fun getByHora (hora: String?):List<Canchitas>?{
         return canchitasRepository.getlistHora(hora)
     }
 
     fun getByCancha (cancha: String?):List<Canchitas>?{
         return canchitasRepository.getlistCancha(cancha)
+    }
+
+    fun updateName(canchitas: Canchitas): Canchitas{
+        try {
+            val response = canchitasRepository.findById(canchitas.id)
+                ?: throw Exception("El id ${canchitas.id} del docente no existe")
+            response.apply {
+                this.nombre = canchitas.nombre
+            }
+            return canchitasRepository.save(canchitas)
+        }
+        catch (ex: Exception){
+            throw ResponseStatusException(
+                HttpStatus.NOT_FOUND, ex.message, ex
+            )
+        }
+
     }
 }

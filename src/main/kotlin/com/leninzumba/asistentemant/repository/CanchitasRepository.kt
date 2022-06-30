@@ -20,7 +20,7 @@ interface CanchitasRepository: JpaRepository <Canchitas, Long> {
     fun getlistNombre(@Param("nombre") nombre: String?): List<Canchitas>?
 
     @Query(nativeQuery = true)
-    fun getlistHora(@Param("hora") hora: Int?): List<Canchitas>?
+    fun getlistHora(@Param("hora") hora: String?): List<Canchitas>?
 
     @Query(nativeQuery = true)
     fun getlistCancha(@Param("cancha") cancha: String?): List<Canchitas>?

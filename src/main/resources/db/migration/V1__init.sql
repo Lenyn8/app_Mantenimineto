@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS maquinaria(
   CREATE TABLE IF NOT EXISTS canchitas(
    id  SERIAL,
    nombre VARCHAR (100) NOT NULL,
-   hora INT (100) NOT NULL,
+   hora VARCHAR (100) NOT NULL,
    cancha VARCHAR (100) NOT NULL,
 
    PRIMARY KEY (id)
